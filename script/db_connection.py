@@ -18,4 +18,8 @@ def db_connection_sqlalchemy():
     engine = create_engine(f"postgresql+psycopg2://{connection_params['user']}:{connection_params['password']}@{connection_params['host']}:{connection_params['port']}/{connection_params['database']}")
     return engine
 
-   
+def db_read_table_sqlalchemy(engine,table_name):
+    # read all records from table_name sqlalchemy
+    sql_query=f'SELECT * FROM {table_name}'
+    df = pd.read_sql(sql_query, con= engine)
+    return df    
