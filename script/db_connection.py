@@ -28,11 +28,17 @@ def db_read_table_sqlalchemy(engine,table_name):
 #----------------using psycopg-------------
 def db_connection_psycopg():
      # database connection using psycopg2
-    dbconn=psycopg2.connect(
+    pgconn=psycopg2.connect(
         dbname="telecom",
         user="postgres",
         password="admin",
         host="localhost",
         port="5432"
     )
-    return dbconn   
+    return pgconn   
+
+def db_read_table_psycopg(pgconn,table_name):
+     # read all records from table_name psycopg
+     sql_query=f'SELECT * FROM {table_name}'
+     df=sqlio.read_sql_query(sql_query,pgconn)
+     return df
