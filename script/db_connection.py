@@ -38,7 +38,7 @@ def db_connection_psycopg():
     return pgconn   
 
 def db_read_table_psycopg(pgconn,table_name):
-     # read all records from table_name psycopg
+     # read all records from table_name using psycopg
      sql_query=f'SELECT * FROM {table_name}'
      df=sqlio.read_sql_query(sql_query,pgconn)
      return df
